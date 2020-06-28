@@ -6,6 +6,6 @@ namespace datingAPI.Data {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {}
 
-        public DbSet<Value> values;
+        public DbSet<Value> values { get; set; }
     }
 }
