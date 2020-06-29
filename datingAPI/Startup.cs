@@ -34,6 +34,14 @@ namespace datingAPI
             services.AddDbContext<DataContext>(optionsBuilder =>
                 optionsBuilder.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
+            services.AddCors(opts => {
+                opts.AddPolicy("localhost", builder => {
+                    builder
+                        .WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +55,8 @@ namespace datingAPI
             // app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("localhost");
 
             app.UseAuthorization();
 
