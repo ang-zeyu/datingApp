@@ -61,7 +61,7 @@ namespace DatingApp.API.Controllers
                 new System.Security.Claims.Claim(System.Security.Claims.ClaimTypes.Name, retrievedUser.Username.ToString())
             };
 
-            SymmetricSecurityKey key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
+            SymmetricSecurityKey key = new SymmetricSecurityKey(System.Text.Encoding.ASCII.GetBytes(
                 this._configuration.GetSection("AppSettings:Key").Value
             ));
             SigningCredentials credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);

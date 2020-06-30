@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
 
 using datingAPI.Models;
+using System.Linq;
 
 namespace datingAPI.Data
 {
@@ -40,7 +41,7 @@ namespace datingAPI.Data
         {
             HMACSHA512 hmac = new HMACSHA512(passwordSalt);
 
-            return hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password)).Equals(passwordHash);
+            return hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password)).SequenceEqual(passwordHash);
         }
 
         public async Task<User> Register(string username, string password)
