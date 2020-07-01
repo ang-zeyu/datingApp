@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
 import alertifyjs from "alertifyjs";
+import { JwtHelperService } from "@auth0/angular-jwt";
 
 const HOST_URL = 'http://localhost:5000/api/auth/';
 
@@ -11,10 +12,17 @@ const HOST_URL = 'http://localhost:5000/api/auth/';
 })
 export class AuthService {
 
+  private jwtHelperService: JwtHelperService = new JwtHelperService();
+
   constructor(private httpClient : HttpClient) { }
 
   isLoggedIn() {
-    return !!localStorage.getItem('tok');
+    const token = localStorage.getItem('tok');
+    if (!token) {
+      return false;
+    }
+
+    return !this.jwtHelperService.isTokenExpired(token);
   }
 
   login(username: string, password: string): Observable<any> {
