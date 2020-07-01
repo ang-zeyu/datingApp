@@ -26,7 +26,6 @@ export class AuthService {
     const token = localStorage.getItem('tok');
     const decodedToken = this.jwtHelperService.decodeToken(token);
     this.username = decodedToken.unique_name;
-    console.log(this.username);
   }
 
   isLoggedIn() {
