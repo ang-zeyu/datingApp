@@ -18,6 +18,8 @@ using MySql.Data.EntityFrameworkCore.Extensions;
 using datingAPI.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using datingAPI.extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace datingAPI
 {
@@ -62,6 +64,20 @@ namespace datingAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }
+            else
+            {
+                app.UseExceptionHandler(builder => {
+                    builder.Run(async (ctx) => {
+                        ctx.Response.StatusCode = 500;
+                        var err = ctx.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature>();
+                        if (err != null)
+                        {
+                            ctx.Response.AddExceptionResponseHeaders(err.Error.Message);
+                            await ctx.Response.WriteAsync(err.Error.Message);
+                        }
+                    });
+                });
             }
 
             // app.UseHttpsRedirection();
