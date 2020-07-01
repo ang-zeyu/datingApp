@@ -1,7 +1,6 @@
 <div class="form-container">
   <h2 class="login-register-heading">Dating App - Register</h2>
   <form #registerForm="ngForm" (ngSubmit)="register()" class="my-2 my-lg-0 mx-auto">
-    <div *ngIf="didRegistrationFail" class="form-row alert alert-danger">Registration failed!</div>
     <div class="form-row">
       <label for="username" class="form-label-text">Username</label>
     </div>
@@ -16,8 +15,7 @@
     </div>
     <div class="form-row">
       <button class="d-block btn btn-success my-2 ml-auto" type="submit">Register</button>
-      <button class="d-block btn btn-primary my-2 ml-1" type="button" (click)="login()">Login</button>
-      <button class="d-block btn btn-dark my-2 ml-1" type="button" (click)="cancel()">Cancel</button>
+      <button class="d-block btn btn-primary my-2 ml-1" type="button" (click)="switchToLogin()">Login</button>
     </div>
   </form>
 </div>

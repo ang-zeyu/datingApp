@@ -12,6 +12,10 @@ export class AuthService {
 
   constructor(private httpClient : HttpClient) { }
 
+  isLoggedIn() {
+    return !!localStorage.getItem('tok');
+  }
+
   login(username: string, password: string): Observable<any> {
     return this.httpClient.post(`${HOST_URL}login`, { username, password })
       .pipe(map((res: any) => {

@@ -10,34 +10,34 @@ export class LoginComponent implements OnInit {
   username : string;
   password : string;
 
-  @Input() isLoggedIn : boolean = false;
-  @Output() isLoggedInEmitter = new EventEmitter<boolean>();
-
-  @Output() loginPageChangeEmitter = new EventEmitter<string>();
+  @Output() loggedInEmitter = new EventEmitter<string>();
 
   didLastLoginSucceed : boolean = true;
 
   constructor(private authService : AuthService) { }
 
   ngOnInit(): void {
-    if (this.isLoggedIn) {
-      this.isLoggedInEmitter.emit(true);
+    if (this.isLoggedIn()) {
+      this.loggedInEmitter.emit('already');
     }
+  }
+
+  isLoggedIn(): boolean {
+    return this.authService.isLoggedIn();
   }
 
   login() {
     this.authService.login(this.username, this.password).subscribe((res) => {
       console.log('Login success!');
-      this.isLoggedInEmitter.emit(true);
-      this.loginPageChangeEmitter.emit('home');
+      this.loggedInEmitter.emit('success');
     }, (err) => {
       console.log('Login failed!');
       this.didLastLoginSucceed = false;
-      this.isLoggedInEmitter.emit(false);
+      this.loggedInEmitter.emit('failed');
     });
   }
 
-  register() {
-    this.loginPageChangeEmitter.emit('register');
+  switchToRegister() {
+    this.loggedInEmitter.emit('register');
   }
 }

@@ -14,7 +14,9 @@
       </li>
     </ul>
   </div>
+
+  <button class="btn btn-danger ml-auto" type="button" (click)="logout()">Logout</button>
 </nav>
-<app-login (loginPageChangeEmitter)="onLogin($event)" *ngIf="currentPage === 'login'" [(isLoggedIn)]="isLoggedIn"></app-login>
+<app-login *ngIf="currentPage === 'login'" (loggedInEmitter)="onLogin($event)"></app-login>
 <app-register *ngIf="currentPage === 'register'" (registerEmitter)="onRegister($event)"></app-register>
 <app-home *ngIf="currentPage === 'home'"></app-home>
