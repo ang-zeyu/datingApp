@@ -14,7 +14,7 @@ export class AuthService {
 
   private jwtHelperService: JwtHelperService = new JwtHelperService();
 
-  public username: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  public username: string = '';
 
   constructor(private httpClient : HttpClient) {
     if (this.isLoggedIn()) {
@@ -25,7 +25,8 @@ export class AuthService {
   private pushUsername() {
     const token = localStorage.getItem('tok');
     const decodedToken = this.jwtHelperService.decodeToken(token);
-    this.username.next(decodedToken.unique_name);
+    this.username = decodedToken.unique_name;
+    console.log(this.username);
   }
 
   isLoggedIn() {
@@ -55,7 +56,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('tok');
-    this.username.next('');
+    this.username = '';
     alertifyjs.success('logged out!');
   }
 

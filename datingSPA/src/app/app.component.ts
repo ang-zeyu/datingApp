@@ -10,15 +10,11 @@ export class AppComponent {
   title = 'datingSPA';
 
   currentPage: string;
-  username: string;
 
-  constructor(private authService: AuthService) {
+  constructor(public authService: AuthService) {
     this.currentPage = this.authService.isLoggedIn()
       ? 'home'
       : 'login';
-    this.authService.username.subscribe(username => {
-      this.username = username;
-    });
   }
 
   onLogin($event: string) {
