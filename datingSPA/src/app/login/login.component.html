@@ -1,7 +1,6 @@
 <div class="form-container">
   <h2 class="login-register-heading">Dating App - Login</h2>
   <form #loginForm="ngForm" (ngSubmit)="login()" class="my-2 my-lg-0 mx-auto">
-    <div *ngIf="!didLastLoginSucceed" class="form-row alert alert-danger">Login failed!</div>
     <div class="form-row">
       <label for="username" class="form-label-text">Username</label>
     </div>

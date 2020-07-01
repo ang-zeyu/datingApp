@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
+import alertifyjs from "alertifyjs";
 
 const HOST_URL = 'http://localhost:5000/api/auth/';
 
@@ -27,6 +28,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('tok');
+    alertifyjs.success('logged out!');
   }
 
   register(username: string, password: string): Observable<any> {

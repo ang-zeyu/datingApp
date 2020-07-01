@@ -28,13 +28,13 @@ export class ErrorInterceptor implements HttpInterceptor {
             return throwError(appErr);
           }
 
-          //
-          const otherErr = err.error;
+          // validation errors
+          const otherErr = err.error.errors;
           if (otherErr && (typeof otherErr) === 'object') {
-            console.log(otherErr);
             return throwError(otherErr);
           }
         }
+        console.log(err);
 
         return throwError('unknown error type');
       })
