@@ -10,19 +10,20 @@ export class AppComponent {
   title = 'datingSPA';
 
   currentPage: string;
-  isLoggedIn: boolean;
+  username: string;
 
   constructor(private authService: AuthService) {
-    this.isLoggedIn = this.authService.isLoggedIn();
-    this.currentPage = this.isLoggedIn
+    this.currentPage = this.authService.isLoggedIn()
       ? 'home'
       : 'login';
+    this.authService.username.subscribe(username => {
+      this.username = username;
+    });
   }
 
   onLogin($event: string) {
     if ($event === 'success') {
       this.currentPage = 'home';
-      this.isLoggedIn = true;
     } else if ($event === 'register') {
       this.currentPage = 'register';
     }

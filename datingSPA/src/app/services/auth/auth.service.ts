@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import alertifyjs from "alertifyjs";
 import { JwtHelperService } from "@auth0/angular-jwt";
 
@@ -14,7 +14,19 @@ export class AuthService {
 
   private jwtHelperService: JwtHelperService = new JwtHelperService();
 
-  constructor(private httpClient : HttpClient) { }
+  public username: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
+  constructor(private httpClient : HttpClient) {
+    if (this.isLoggedIn()) {
+      this.pushUsername();
+    }
+  }
+
+  private pushUsername() {
+    const token = localStorage.getItem('tok');
+    const decodedToken = this.jwtHelperService.decodeToken(token);
+    this.username.next(decodedToken.unique_name);
+  }
 
   isLoggedIn() {
     const token = localStorage.getItem('tok');
@@ -22,20 +34,28 @@ export class AuthService {
       return false;
     }
 
-    return !this.jwtHelperService.isTokenExpired(token);
+    try {
+      const isTokenExpired = this.jwtHelperService.isTokenExpired(token);
+      return !isTokenExpired;
+    } catch {
+      localStorage.removeItem('tok');
+      return false;
+    }
   }
 
   login(username: string, password: string): Observable<any> {
     return this.httpClient.post(`${HOST_URL}login`, { username, password })
       .pipe(map((res: any) => {
         if (res) {
-          localStorage.setItem('tok', `Bearer ${res}`);
+          localStorage.setItem('tok', `Bearer ${res.token}`);
+          this.pushUsername();
         }
       }));
   }
 
   logout(): void {
     localStorage.removeItem('tok');
+    this.username.next('');
     alertifyjs.success('logged out!');
   }
 

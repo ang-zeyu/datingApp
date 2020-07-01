@@ -15,7 +15,8 @@
     </ul>
   </div>
 
-  <button *ngIf="isLoggedIn" class="btn btn-danger ml-auto" type="button" (click)="logout()">Logout</button>
+  <div class="mx-2 font-weight-bold">{{ username }}</div>
+  <button *ngIf="username" class="btn btn-danger ml-auto" type="button" (click)="logout()">Logout</button>
 </nav>
 <app-login *ngIf="currentPage === 'login'" (loggedInEmitter)="onLogin($event)"></app-login>
 <app-register *ngIf="currentPage === 'register'" (registerEmitter)="onRegister($event)"></app-register>

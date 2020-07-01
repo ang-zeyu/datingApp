@@ -30,7 +30,6 @@ export class RegisterComponent implements OnInit {
   }
 
   switchToLogin() {
-    this.authService.logout();
     this.registerEmitter.emit('login');
   }
 }
