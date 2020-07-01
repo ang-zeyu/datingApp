@@ -1,3 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~font-awesome/css/font-awesome.min.css';
+
+@font-face {
+  font-family: Courgette;
+  src: url("assets/fonts/Courgette-Regular.ttf");
+}
+
+.login-register-heading {
+  font-family: Courgette, cursive;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-image: url("assets/background.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.navbar-custom {
+  background-color: #f5ac2d;
+}
+
+.flex-sub-container {
+  display: flex;
+  flex: 1 0 0;
+  justify-content: center;
+}
+
+.form-container {
+  border: 2px solid #d98100;
+  border-radius: 3px;
+  padding: 20px 10px;
+  min-width: 350px;
+  width: 50%;
+  background: linear-gradient(90deg, rgba(255,158,0,0.9) 0%, rgba(255,204,107,0.9) 100%);
+  margin: auto;
+}
+
+.form-label-text {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0 auto 5px auto;
+}
+
+.form-item {
+  min-width: 300px;
+  width: 50%;
+}

@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'datingSPA';
+
+  currentPage: string = 'login'
+  isLoggedIn: boolean = false;
+
+  onLogin($event: string) {
+    this.currentPage = $event;
+  }
+
+  onRegister($event: string) {
+    this.currentPage = $event;
+  }
 }
