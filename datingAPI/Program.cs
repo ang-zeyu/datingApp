@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using datingAPI.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -13,7 +15,22 @@ namespace datingAPI
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            IHost host = CreateHostBuilder(args).Build();
+
+            if (args[0] != "--seed") {
+                host.Run();
+                return;
+            }
+
+            using (IServiceScope scope = host.Services.CreateScope())
+            {
+                IServiceProvider svcs = scope.ServiceProvider;
+                DataContext dbCtx = svcs.GetRequiredService<DataContext>();
+                Seeder seeder = new Seeder(dbCtx);
+                seeder.SeedUsers();
+            }
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

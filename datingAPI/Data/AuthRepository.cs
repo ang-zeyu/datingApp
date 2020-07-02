@@ -69,6 +69,29 @@ namespace datingAPI.Data
             return userToStore;
         }
 
+        public async Task<User> Register(User user, string password)
+        {
+            // check if user exists
+            if (await this.UserExists(user.Username))
+            {
+                return null;
+            }
+
+            // validation
+
+            // create password hash, store to db
+            byte[] passwordHash, passwordSalt;
+            CreatePasswordHash(password, out passwordHash, out passwordSalt);
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+
+            return user;
+        }
+
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
             var hmac = new HMACSHA512();
