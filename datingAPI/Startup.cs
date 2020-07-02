@@ -46,6 +46,7 @@ namespace datingAPI
                         .AllowAnyMethod();
                 });
             });
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(opts => {
