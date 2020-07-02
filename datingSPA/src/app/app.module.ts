@@ -12,8 +12,8 @@ import { ErrorInterceptorProvider } from './interceptors/error.interceptor';
 
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { MembersComponent } from './members/members.component';
-import { SavedListComponent } from './saved-list/saved-list.component';
 import { MessagesComponent } from './messages/messages.component';
+import { FavouritesComponent } from './favourites/favourites.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +22,8 @@ import { MessagesComponent } from './messages/messages.component';
     RegisterComponent,
     HomeComponent,
     MembersComponent,
-    SavedListComponent,
     MessagesComponent,
+    FavouritesComponent,
   ],
   imports: [
     BrowserModule,
