@@ -10,7 +10,7 @@ namespace datingAPI.Data
 
          void Delete(User user);
 
-         Task<bool> Save();
+         Task<int> Save();
 
          Task<User> GetUser(int id);
 
