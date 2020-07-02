@@ -20,6 +20,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using datingAPI.extensions;
 using Microsoft.AspNetCore.Http;
+using AutoMapper;
 
 namespace datingAPI
 {
@@ -37,7 +38,7 @@ namespace datingAPI
         {
             services.AddDbContext<DataContext>(optionsBuilder =>
                 optionsBuilder.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddCors(opts => {
                 opts.AddPolicy("localhost", builder => {
                     builder
@@ -46,6 +47,7 @@ namespace datingAPI
                         .AllowAnyMethod();
                 });
             });
+            services.AddAutoMapper(typeof(datingAPI.Controllers.UsersController).Assembly);
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
