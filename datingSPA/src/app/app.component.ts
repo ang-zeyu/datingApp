@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from "./services/auth/auth.service";
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +17,7 @@ export class AppComponent {
       : 'login';
   }
 
-  onLogin($event: string) {
+  onLogin($event: string): void {
     if ($event === 'success') {
       this.currentPage = 'home';
     } else if ($event === 'register') {
@@ -25,13 +25,13 @@ export class AppComponent {
     }
   }
 
-  onRegister($event: string) {
+  onRegister($event: string): void {
     if ($event === 'login' || $event === 'registered') {
       this.currentPage = 'login';
     }
   }
 
-  logout() {
+  logout(): void {
     this.authService.logout();
     this.currentPage = 'login';
   }

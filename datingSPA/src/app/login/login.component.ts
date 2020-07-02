@@ -1,6 +1,6 @@
 import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
-import { AuthService } from "../services/auth/auth.service";
-import alertify from "alertifyjs";
+import { AuthService } from '../services/auth/auth.service';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-login',
@@ -8,12 +8,12 @@ import alertify from "alertifyjs";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username : string;
-  password : string;
+  username: string;
+  password: string;
 
   @Output() loggedInEmitter = new EventEmitter<string>();
 
-  constructor(private authService : AuthService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     if (this.isLoggedIn()) {
@@ -25,17 +25,17 @@ export class LoginComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
-  login() {
+  login(): void {
     this.authService.login(this.username, this.password).subscribe((res) => {
-      alertify.success("Login successful! Redirected you to our home page...")
+      alertify.success('Login successful! Redirected you to our home page...');
       this.loggedInEmitter.emit('success');
     }, (err) => {
-      alertify.error("Login failed! Check your username or password.")
+      alertify.error('Login failed! Check your username or password.');
       this.loggedInEmitter.emit('failed');
     });
   }
 
-  switchToRegister() {
+  switchToRegister(): void {
     this.loggedInEmitter.emit('register');
   }
 }
