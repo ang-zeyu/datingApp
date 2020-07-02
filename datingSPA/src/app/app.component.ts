@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,28 +12,18 @@ export class AppComponent {
 
   currentPage: string;
 
-  constructor(public authService: AuthService) {
+  constructor(public authService: AuthService, public router: Router) {
     this.currentPage = this.authService.isLoggedIn()
       ? 'home'
       : 'login';
   }
 
-  onLogin($event: string): void {
-    if ($event === 'success') {
-      this.currentPage = 'home';
-    } else if ($event === 'register') {
-      this.currentPage = 'register';
-    }
-  }
-
-  onRegister($event: string): void {
-    if ($event === 'login' || $event === 'registered') {
-      this.currentPage = 'login';
-    }
+  login(): void {
+    this.router.navigate(['login']);
   }
 
   logout(): void {
     this.authService.logout();
-    this.currentPage = 'login';
+    this.router.navigate(['login']);
   }
 }

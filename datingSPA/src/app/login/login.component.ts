@@ -2,6 +2,8 @@ import {Component, OnInit, Output, EventEmitter, Input} from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import alertify from 'alertifyjs';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,13 +13,12 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
 
-  @Output() loggedInEmitter = new EventEmitter<string>();
-
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     if (this.isLoggedIn()) {
-      this.loggedInEmitter.emit('already');
+      alertify.alert('You are already logged in! Redirecting you to the home page...');
+      this.router.navigate(['home']);
     }
   }
 
@@ -28,14 +29,13 @@ export class LoginComponent implements OnInit {
   login(): void {
     this.authService.login(this.username, this.password).subscribe((res) => {
       alertify.success('Login successful! Redirected you to our home page...');
-      this.loggedInEmitter.emit('success');
+      this.router.navigate(['home']);
     }, (err) => {
       alertify.error('Login failed! Check your username or password.');
-      this.loggedInEmitter.emit('failed');
     });
   }
 
   switchToRegister(): void {
-    this.loggedInEmitter.emit('register');
+    this.router.navigate(['register']);
   }
 }

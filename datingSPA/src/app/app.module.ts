@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +15,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { MembersComponent } from './members/members.component';
 import { MessagesComponent } from './messages/messages.component';
 import { FavouritesComponent } from './favourites/favourites.component';
+import { appRoutes } from './routes';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { FavouritesComponent } from './favourites/favourites.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     AuthService,

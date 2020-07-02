@@ -23,6 +23,13 @@ app-root {
   background-size: cover;
 }
 
+app-login, app-register, app-home {
+  display: flex;
+  flex: 1 0 0;
+  justify-content: center;
+  align-items: center;
+}
+
 .navbar-custom {
   background-color: #f5ac2d;
 }

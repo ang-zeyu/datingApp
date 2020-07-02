@@ -14,21 +14,21 @@ export class AuthService {
 
   private jwtHelperService: JwtHelperService = new JwtHelperService();
 
-  public username: string = '';
+  public username = '';
 
-  constructor(private httpClient : HttpClient) {
+  constructor(private httpClient: HttpClient) {
     if (this.isLoggedIn()) {
       this.pushUsername();
     }
   }
 
-  private pushUsername() {
+  private pushUsername(): void {
     const token = localStorage.getItem('tok');
     const decodedToken = this.jwtHelperService.decodeToken(token);
     this.username = decodedToken.unique_name;
   }
 
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     const token = localStorage.getItem('tok');
     if (!token) {
       return false;

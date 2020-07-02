@@ -33,6 +33,9 @@ export class ErrorInterceptor implements HttpInterceptor {
           if (otherErr && (typeof otherErr) === 'object') {
             return throwError(otherErr);
           }
+
+          // bad requests
+          return throwError(err.error);
         }
         console.log(err);
 

@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
+import { Router } from '@angular/router';
+
 import alertifyjs from 'alertifyjs';
 
 @Component({
@@ -12,9 +14,7 @@ export class RegisterComponent implements OnInit {
   username: string;
   password: string;
 
-  @Output() registerEmitter = new EventEmitter<string>();
-
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -22,14 +22,19 @@ export class RegisterComponent implements OnInit {
   register(): void {
     this.authService.register(this.username, this.password).subscribe((res) => {
       alertifyjs.success(`Registration success! Go ahead and login!`);
-      this.registerEmitter.emit('registered');
+      this.switchToLogin();
     }, (err) => {
-      const reason = Object.values(err).join(', ');
+      let reason;
+      if (typeof err === 'object') {
+        reason = Object.values(err).join(', ');
+      } else {
+        reason = err;
+      }
       alertifyjs.error(`Registration failed!<br>${reason}`);
     });
   }
 
   switchToLogin(): void {
-    this.registerEmitter.emit('login');
+    this.router.navigate(['login']);
   }
 }
