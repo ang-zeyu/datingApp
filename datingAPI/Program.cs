@@ -17,17 +17,14 @@ namespace datingAPI
         {
             IHost host = CreateHostBuilder(args).Build();
 
-            if (args[0] != "--seed") {
-                host.Run();
-                return;
-            }
-
-            using (IServiceScope scope = host.Services.CreateScope())
-            {
-                IServiceProvider svcs = scope.ServiceProvider;
-                DataContext dbCtx = svcs.GetRequiredService<DataContext>();
-                Seeder seeder = new Seeder(dbCtx);
-                seeder.SeedUsers();
+            if (args.Length > 0 && args[0] == "--seed") {
+                using (IServiceScope scope = host.Services.CreateScope())
+                {
+                    IServiceProvider svcs = scope.ServiceProvider;
+                    DataContext dbCtx = svcs.GetRequiredService<DataContext>();
+                    Seeder seeder = new Seeder(dbCtx);
+                    seeder.SeedUsers();
+                }
             }
 
             host.Run();
