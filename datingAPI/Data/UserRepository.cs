@@ -27,9 +27,9 @@ namespace datingAPI.Data
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<User> GetUser(int id)
+        public async Task<User> GetUser(string username)
         {
-            return await _context.Users.Include(usr => usr.Photos).FirstOrDefaultAsync(usr => usr.Id == id);
+            return await _context.Users.Include(usr => usr.Photos).FirstOrDefaultAsync(usr => usr.Username.ToLower() == username);
         }
 
         public async Task<IEnumerable<User>> GetUsers()

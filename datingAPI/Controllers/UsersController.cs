@@ -39,11 +39,11 @@ namespace datingAPI.Controllers
             return Ok(userResponses);
         }
 
-        // GET api/users/{id}
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetUser(int id)
+        // GET api/users/{username}
+        [HttpGet("{username}")]
+        public async Task<IActionResult> GetUser(string username)
         {
-            User user = await _userRepository.GetUser(id);
+            User user = await _userRepository.GetUser(username);
             return Ok(_mapper.Map<UserWithPhotosResponseDto>(user));
         }
     }

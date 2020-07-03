@@ -12,7 +12,7 @@ namespace datingAPI.Data
 
          Task<int> Save();
 
-         Task<User> GetUser(int id);
+         Task<User> GetUser(string username);
 
          Task<IEnumerable<User>> GetUsers(); 
     }
