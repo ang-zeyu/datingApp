@@ -9,7 +9,7 @@
           <p class="card-text"><i class="fa fa-globe"></i>&nbsp;&nbsp;<strong>Country:</strong> {{ user.country }}</p>
           <p class="card-text"><i class="fa fa-building"></i>&nbsp;&nbsp;<strong>City:</strong> {{ user.city }}</p>
           <p class="card-text"><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;<strong>Gender:</strong> {{ user.gender }}</p>
-          <p class="card-text"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;<strong>Last active:</strong> {{ user.lastActive }}</p>
+          <p class="card-text"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;<strong>Last active:</strong> {{ user.lastActive.toDateString() }}</p>
         </div>
       </div>
     </div>
