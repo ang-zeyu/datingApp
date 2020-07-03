@@ -15,7 +15,7 @@ export class UserService {
     return this.http.get<User[]>(environment.userApiBaseUrl);
   }
 
-  getUser(id: number): Observable<User> {
-    return this.http.get<User>(`${environment.userApiBaseUrl}${id}`);
+  getUser(username: string): Observable<User> {
+    return this.http.get<User>(`${environment.userApiBaseUrl}${username}`);
   }
 }
