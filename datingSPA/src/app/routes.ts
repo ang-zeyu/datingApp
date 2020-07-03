@@ -9,6 +9,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { AuthGuard } from './guards/auth.guard';
 import { MemberPageComponent } from './members/member-page/member-page.component';
 import { MembersResolver } from './resolvers/members.resolver';
+import { MemberResolver } from './resolvers/member.resolver';
 
 export const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -19,7 +20,7 @@ export const appRoutes: Routes = [
     path: '', runGuardsAndResolvers: 'always', canActivate: [AuthGuard],
     children: [
       { path: 'members', component: MembersComponent, resolve: { users: MembersResolver } },
-      { path: 'members/:username', component: MemberPageComponent },
+      { path: 'members/:username', component: MemberPageComponent, resolve: { user: MemberResolver } },
       { path: 'favourites', component: FavouritesComponent },
       { path: 'messages', component: MessagesComponent },
     ]

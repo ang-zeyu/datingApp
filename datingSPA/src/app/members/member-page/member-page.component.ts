@@ -15,14 +15,8 @@ export class MemberPageComponent implements OnInit {
   constructor(private userService: UserService, private currentRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.loadUser();
-  }
-
-  loadUser(): void {
-    const username: string = this.currentRoute.snapshot.params.username;
-    this.userService.getUser(username).subscribe(
-      user => this.user = user,
-      err => console.log(err)
-    );
+    this.currentRoute.data.subscribe(data => {
+      this.user = data.user;
+    });
   }
 }
