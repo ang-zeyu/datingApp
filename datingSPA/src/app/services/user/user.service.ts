@@ -4,8 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../../interfaces/user';
 
-const USER_API_BASE_URL = `${environment.apiBaseUrl}users/`;
-
 @Injectable({
   providedIn: 'root'
 })
@@ -14,10 +12,10 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(USER_API_BASE_URL);
+    return this.http.get<User[]>(environment.userApiBaseUrl);
   }
 
   getUser(id: number): Observable<User> {
-    return this.http.get<User>(`${USER_API_BASE_URL}${id}`);
+    return this.http.get<User>(`${environment.userApiBaseUrl}${id}`);
   }
 }

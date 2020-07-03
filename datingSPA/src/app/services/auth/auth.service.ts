@@ -6,8 +6,6 @@ import alertifyjs from 'alertifyjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from '../../../environments/environment';
 
-const AUTH_API_BASE_URL = `${environment.apiBaseUrl}auth/`;
-
 @Injectable({
   providedIn: 'root'
 })
@@ -45,7 +43,7 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<any> {
-    return this.httpClient.post(`${AUTH_API_BASE_URL}login`, { username, password })
+    return this.httpClient.post(`${environment.authApiBaseUrl}login`, { username, password })
       .pipe(map((res: any) => {
         if (res) {
           localStorage.setItem('tok', `Bearer ${res.token}`);
@@ -61,6 +59,6 @@ export class AuthService {
   }
 
   register(username: string, password: string): Observable<any> {
-    return this.httpClient.post(`${AUTH_API_BASE_URL}register`, { username, password });
+    return this.httpClient.post(`${environment.authApiBaseUrl}register`, { username, password });
   }
 }
