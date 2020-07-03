@@ -1,0 +1,17 @@
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" [src]="user.photoUrl" alt="Card image cap">
+  <div class="card-body">
+    <p class="card-text font-weight-bolder display-name">
+      {{ user.displayName }}
+      <span class="button-tray">
+        <i class="fa fa-user"></i>
+        <i class="fa fa-star"></i>
+        <i class="fa fa-comment"></i>
+      </span>
+    </p>
+    <div class="row">
+      <div class="col-4 card-text font-weight-bold">Age: <span class="font-weight-normal">{{ user.age }}</span></div>
+      <div class="col card-text font-weight-bold">City: <span class="font-weight-normal">{{ user.city }}</span></div>
+    </div>
+  </div>
+</div>

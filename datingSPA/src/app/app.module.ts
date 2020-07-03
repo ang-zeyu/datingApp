@@ -18,6 +18,7 @@ import { FavouritesComponent } from './favourites/favourites.component';
 import { appRoutes } from './routes';
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from '../environments/environment';
+import { MemberCardComponent } from './members/member-card/member-card.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { environment } from '../environments/environment';
     MembersComponent,
     MessagesComponent,
     FavouritesComponent,
+    MemberCardComponent,
   ],
   imports: [
     BrowserModule,

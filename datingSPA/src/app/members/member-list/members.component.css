@@ -1,0 +1,12 @@
+div.scroll-container {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.row {
+  margin: 10px;
+}
+
+app-member-card {
+
+}

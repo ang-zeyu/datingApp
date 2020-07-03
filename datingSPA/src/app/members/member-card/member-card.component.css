@@ -1,0 +1,48 @@
+:host {
+  margin: 10px 0;
+}
+
+.card {
+  background-color: rgba(219, 112, 147, 0.5);
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.card:hover {
+  transform: scale(1.05, 1.05);
+}
+
+.card-text {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.button-tray {
+  display: inline-block;
+  transform: translateY(-30px);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+
+.card:hover .button-tray {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.display-name {
+  font-family: Courgette, cursive;
+  font-size: 1.3em;
+}
+
+.fa {
+  margin: 0 0.2em;
+  padding: 0.25em;
+  border-radius: 0.5em;
+  background-color: #e39402;
+  color: rgb(238, 230, 234);
+  transition: transform 0.3s;
+}
+
+.fa:hover {
+  transform: scale(1.2, 1.2);
+}

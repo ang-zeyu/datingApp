@@ -18,16 +18,19 @@ app-root {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  max-height: 100vh;
+  overflow-y: hidden;
   background-image: url("assets/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-app-login, app-register, app-home, app-members, app-member, app-member-detail {
+app-login, app-register, app-home, app-members {
   display: flex;
   flex: 1 0 0;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 
 .navbar-custom {
