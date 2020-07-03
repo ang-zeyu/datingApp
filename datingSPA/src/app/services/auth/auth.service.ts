@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { map } from "rxjs/operators";
-import { BehaviorSubject, Observable } from "rxjs";
-import alertifyjs from "alertifyjs";
-import { JwtHelperService } from "@auth0/angular-jwt";
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import alertifyjs from 'alertifyjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from '../../../environments/environment';
 
-const HOST_URL = 'http://localhost:5000/api/auth/';
+const AUTH_API_BASE_URL = `${environment.apiBaseUrl}auth/`;
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +45,7 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<any> {
-    return this.httpClient.post(`${HOST_URL}login`, { username, password })
+    return this.httpClient.post(`${AUTH_API_BASE_URL}login`, { username, password })
       .pipe(map((res: any) => {
         if (res) {
           localStorage.setItem('tok', `Bearer ${res.token}`);
@@ -60,6 +61,6 @@ export class AuthService {
   }
 
   register(username: string, password: string): Observable<any> {
-    return this.httpClient.post(`${HOST_URL}register`, { username, password });
+    return this.httpClient.post(`${AUTH_API_BASE_URL}register`, { username, password });
   }
 }
