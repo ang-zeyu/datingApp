@@ -1,6 +1,5 @@
-div.scroll-container {
+div {
   height: 100%;
-  overflow-y: scroll;
 }
 
 .row {

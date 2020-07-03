@@ -5,18 +5,18 @@
         <img class="card-img-top" [src]="user.photoUrl" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{ user.displayName }}</h5>
-          <p class="card-text">Age: {{ user.age }}</p>
-          <p class="card-text">Country: {{ user.country }}</p>
-          <p class="card-text">City: {{ user.city }}</p>
-          <p class="card-text">Gender: {{ user.gender }}</p>
-          <p class="card-text">Last active: {{ user.lastActive }}</p>
+          <p class="card-text"><i class="fa fa-birthday-cake"></i>&nbsp;&nbsp;<strong>Age:</strong> {{ user.age }}</p>
+          <p class="card-text"><i class="fa fa-globe"></i>&nbsp;&nbsp;<strong>Country:</strong> {{ user.country }}</p>
+          <p class="card-text"><i class="fa fa-building"></i>&nbsp;&nbsp;<strong>City:</strong> {{ user.city }}</p>
+          <p class="card-text"><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;<strong>Gender:</strong> {{ user.gender }}</p>
+          <p class="card-text"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;<strong>Last active:</strong> {{ user.lastActive }}</p>
         </div>
       </div>
     </div>
     <div class="col pl-3 right">
       <ul ngbNav #nav="ngbNav" class="nav-tabs">
         <li ngbNavItem>
-          <a ngbNavLink>About {{ user.displayName }}</a>
+          <a ngbNavLink>About {{ user.displayName }} <i class="fa fa-user"></i></a>
           <ng-template ngbNavContent>
             <h4>Introduction</h4>
             <p>{{ user.introduction }}</p>
@@ -25,20 +25,20 @@
           </ng-template>
         </li>
         <li ngbNavItem>
-          <a ngbNavLink>Interests</a>
+          <a ngbNavLink>Interests <i class="fa fa-gamepad"></i></a>
           <ng-template ngbNavContent>
             <h4>Interests</h4>
             <p>{{ user.interests }}</p>
           </ng-template>
         </li>
         <li ngbNavItem>
-          <a ngbNavLink>Photos</a>
+          <a ngbNavLink>Photos <i class="fa fa-camera"></i></a>
           <ng-template ngbNavContent>
             <p>3</p>
           </ng-template>
         </li>
         <li ngbNavItem>
-          <a ngbNavLink>Messages</a>
+          <a ngbNavLink>Messages <i class="fa fa-comment"></i></a>
           <ng-template ngbNavContent>
             <p>3</p>
           </ng-template>

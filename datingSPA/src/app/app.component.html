@@ -30,4 +30,6 @@
   <button *ngIf="!authService.username && router.url !== '/login' && router.url !== '/register'" class="btn btn-light ml-auto" type="button" (click)="login()">Login</button>
 </nav>
 
+<div class="background-container"></div>
+
 <router-outlet></router-outlet>
