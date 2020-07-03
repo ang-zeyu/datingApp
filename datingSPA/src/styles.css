@@ -25,7 +25,7 @@ app-root {
   background-size: cover;
 }
 
-app-login, app-register, app-home, app-members {
+app-login, app-register, app-home, app-members, app-member-page {
   display: flex;
   flex: 1 0 0;
   justify-content: center;

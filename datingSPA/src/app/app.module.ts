@@ -19,6 +19,7 @@ import { appRoutes } from './routes';
 import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from '../environments/environment';
 import { MemberCardComponent } from './members/member-card/member-card.component';
+import { MemberPageComponent } from './members/member-page/member-page.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MemberCardComponent } from './members/member-card/member-card.component
     MessagesComponent,
     FavouritesComponent,
     MemberCardComponent,
+    MemberPageComponent,
   ],
   imports: [
     BrowserModule,

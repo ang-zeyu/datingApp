@@ -4,7 +4,7 @@
     <p class="card-text font-weight-bolder display-name">
       {{ user.displayName }}
       <span class="button-tray">
-        <i class="fa fa-user"></i>
+        <i class="fa fa-user" [routerLink]="['/members', user.username]"></i>
         <i class="fa fa-star"></i>
         <i class="fa fa-comment"></i>
       </span>
