@@ -19,8 +19,11 @@
           <a ngbNavLink>About {{ user.displayName }} <i class="fa fa-user"></i></a>
           <ng-template ngbNavContent>
             <h4>Introduction</h4>
+            <hr>
             <p>{{ user.introduction }}</p>
+
             <h4>Looking For</h4>
+            <hr>
             <p>{{ user.lookingFor }}</p>
           </ng-template>
         </li>
@@ -28,6 +31,7 @@
           <a ngbNavLink>Interests <i class="fa fa-gamepad"></i></a>
           <ng-template ngbNavContent>
             <h4>Interests</h4>
+            <hr>
             <p>{{ user.interests }}</p>
           </ng-template>
         </li>

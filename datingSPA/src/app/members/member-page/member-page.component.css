@@ -1,5 +1,16 @@
-.card {
+.card,
+.card img {
   border-radius: 10px;
+}
+
+.card {
+  border: 3px solid rgb(253, 187, 102);
+  background-color: rgba(255, 241, 251, 0.8);
+}
+
+.card img {
+  width: 80%;
+  margin: 10% auto;
 }
 
 .card-title {
@@ -10,6 +21,7 @@
   background-color: rgba(241, 196, 236, 0.8);
   padding: 20px;
   border-radius: 10px;
+  border: 3px solid rgb(253, 187, 102);
 }
 
 /*
@@ -37,4 +49,8 @@
   border-bottom: 3px solid #e57922;
   background-color: rgba(238, 202, 176, 0.5);
   color: #ff6a1e;
+}
+
+.tab-content {
+  padding: 2.5%;
 }
