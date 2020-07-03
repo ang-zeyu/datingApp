@@ -1,1 +1,50 @@
-<p>{{ user?.username }}</p>
+<div class="container py-3">
+  <div class="row">
+    <div class="col-md-4 col-12">
+      <div class="card">
+        <img class="card-img-top" [src]="user.photoUrl" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ user.displayName }}</h5>
+          <p class="card-text">Age: {{ user.age }}</p>
+          <p class="card-text">Country: {{ user.country }}</p>
+          <p class="card-text">City: {{ user.city }}</p>
+          <p class="card-text">Gender: {{ user.gender }}</p>
+          <p class="card-text">Last active: {{ user.lastActive }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col pl-3 right">
+      <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem>
+          <a ngbNavLink>About {{ user.displayName }}</a>
+          <ng-template ngbNavContent>
+            <h4>Introduction</h4>
+            <p>{{ user.introduction }}</p>
+            <h4>Looking For</h4>
+            <p>{{ user.lookingFor }}</p>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>Interests</a>
+          <ng-template ngbNavContent>
+            <h4>Interests</h4>
+            <p>{{ user.interests }}</p>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>Photos</a>
+          <ng-template ngbNavContent>
+            <p>3</p>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>Messages</a>
+          <ng-template ngbNavContent>
+            <p>3</p>
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+  </div>
+</div>

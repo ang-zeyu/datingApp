@@ -1,0 +1,51 @@
+.card,
+.container,
+.container > .row,
+.container > .row > .col-12 {
+  height: 100%;
+  overflow: hidden;
+}
+
+.container {
+  overflow-y: auto;
+}
+
+
+
+.card {
+  border-radius: 10px;
+}
+
+.card-title {
+  font-family: Courgette, cursive;
+}
+
+.card-body {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.right {
+  background-color: rgba(241, 196, 236, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/*
+ tab styling
+ */
+
+.nav-tabs {
+  border-bottom: 1px solid #f1a871;
+}
+
+.nav-tabs > .nav-item > .nav-link {
+  border-bottom: 2px solid #f1a871;
+  color: #fa6e2c;
+}
+
+.nav-tabs > .nav-item > .nav-link.active {
+  border-bottom: 3px solid #e57922;
+  background-color: rgba(241, 168, 113, 0.7);
+  color: #f8f4f4;
+}
