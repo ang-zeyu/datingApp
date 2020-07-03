@@ -6,6 +6,7 @@ const API_BASE_URL = 'http://localhost:5000/api/';
 
 export const environment = {
   production: false,
+  apiBaseUrl: API_BASE_URL,
   authApiBaseUrl: `${API_BASE_URL}auth/`,
   userApiBaseUrl: `${API_BASE_URL}users/`
 };

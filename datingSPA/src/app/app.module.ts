@@ -16,6 +16,8 @@ import { MembersComponent } from './members/members.component';
 import { MessagesComponent } from './messages/messages.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { appRoutes } from './routes';
+import { JwtModule } from '@auth0/angular-jwt';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,14 @@ import { appRoutes } from './routes';
     HttpClientModule,
     FormsModule,
     NgbDropdownModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('tok'),
+        whitelistedDomains: [environment.apiBaseUrl],
+        blacklistedRoutes: [environment.authApiBaseUrl]
+      }
+    })
   ],
   providers: [
     AuthService,
