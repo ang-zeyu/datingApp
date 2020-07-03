@@ -46,7 +46,7 @@ export class AuthService {
     return this.httpClient.post(`${environment.authApiBaseUrl}login`, { username, password })
       .pipe(map((res: any) => {
         if (res) {
-          localStorage.setItem('tok', `Bearer ${res.token}`);
+          localStorage.setItem('tok', res.token);
           this.pushUsername();
         }
       }));
