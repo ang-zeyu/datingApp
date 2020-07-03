@@ -1,7 +1,11 @@
-div {
-  height: 100%;
-}
-
 .row {
   margin: 10px;
+}
+
+
+@media (min-width: 1368px) {
+  .col-xlg-2 {
+    flex: 0 0 16.6%;
+    max-width: 16.6%;
+  }
 }
