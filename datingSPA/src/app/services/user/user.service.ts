@@ -18,4 +18,9 @@ export class UserService {
   getUser(username: string): Observable<User> {
     return this.http.get<User>(`${environment.userApiBaseUrl}${username}`);
   }
+
+  // tslint:disable-next-line:ban-types
+  saveUser(user: User): Observable<Object> {
+    return this.http.put(`${environment.userApiBaseUrl}${user.username}`, user);
+  }
 }

@@ -1,2 +1,56 @@
-<p>member-edit works!</p>
-{{ user.displayName }}
+<div class="container py-3">
+  <div class="row">
+    <div class="col-md-4 col-12">
+      <div class="card">
+        <img class="card-img-top" [src]="user.photoUrl" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{ user.displayName }}</h5>
+          <p class="card-text"><i class="fa fa-birthday-cake"></i>&nbsp;&nbsp;<strong>Age:</strong> {{ user.age }}</p>
+          <p class="card-text"><i class="fa fa-globe"></i>&nbsp;&nbsp;<strong>Country:</strong> {{ user.country }}</p>
+          <p class="card-text"><i class="fa fa-building"></i>&nbsp;&nbsp;<strong>City:</strong> {{ user.city }}</p>
+          <p class="card-text"><i class="fa fa-venus-mars"></i>&nbsp;&nbsp;<strong>Gender:</strong> {{ user.gender }}</p>
+          <p class="card-text"><i class="fa fa-clock-o"></i>&nbsp;&nbsp;<strong>Last active:</strong> {{ user.lastActive.toDateString() }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col pl-3 right">
+      <ul ngbNav #nav="ngbNav" class="nav-tabs">
+        <li ngbNavItem>
+          <a ngbNavLink>About Me <i class="fa fa-user"></i></a>
+          <ng-template ngbNavContent>
+            <form #aboutForm="ngForm" (ngSubmit)="save()">
+              <div class="form-group">
+                <h4><label for="introduction">Introduction</label></h4>
+                <hr>
+                <textarea class="form-control" id="introduction" name="introduction" [(ngModel)]="user.introduction"></textarea>
+              </div>
+
+              <div class="form-group">
+                <h4><label for="lookingFor">Looking For</label></h4>
+                <hr>
+                <textarea class="form-control" id="lookingFor" name="lookingFor" [(ngModel)]="user.lookingFor"></textarea>
+              </div>
+
+              <div class="form-group">
+                <h4><label for="interests">Interests</label></h4>
+                <hr>
+                <textarea class="form-control" id="interests" name="interests" [(ngModel)]="user.interests"></textarea>
+              </div>
+
+              <div>
+                <button [disabled]="!aboutForm.dirty" class="btn btn-success ml-auto" type="submit">Save Changes</button>
+              </div>
+            </form>
+          </ng-template>
+        </li>
+        <li ngbNavItem>
+          <a ngbNavLink>Photos <i class="fa fa-camera"></i></a>
+          <ng-template ngbNavContent>
+            <app-member-gallery [photos]="user.photos"></app-member-gallery>
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+  </div>
+</div>
