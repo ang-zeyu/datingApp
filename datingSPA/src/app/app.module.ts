@@ -21,6 +21,7 @@ import { environment } from '../environments/environment';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberPageComponent } from './members/member-page/member-page.component';
 import { MemberGalleryComponent } from './members/member-gallery/member-gallery.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MemberGalleryComponent } from './members/member-gallery/member-gallery.
     MemberCardComponent,
     MemberPageComponent,
     MemberGalleryComponent,
+    MemberEditComponent,
   ],
   imports: [
     BrowserModule,

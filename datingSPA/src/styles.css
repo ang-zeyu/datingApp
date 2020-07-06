@@ -30,7 +30,7 @@ app-root {
   background-size: cover;
 }
 
-app-login, app-register, app-home, app-members, app-member-page {
+app-login, app-register, app-home, app-members, app-member-page, app-member-edit {
   display: flex;
   flex: 1 0 0;
   justify-content: center;
