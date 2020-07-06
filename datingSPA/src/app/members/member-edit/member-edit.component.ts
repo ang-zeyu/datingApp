@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, RouterStateSnapshot } from '@angular/router';
 import { User } from '../../interfaces/user';
 
@@ -16,6 +16,14 @@ export class MemberEditComponent implements OnInit {
 
   @ViewChild(NgForm)
   aboutForm: NgForm;
+
+  @HostListener('window:beforeunload', ['$event'])
+  beforeUnload($event: any): void {
+    if (this.aboutForm.dirty) {
+      $event.preventDefault();
+      $event.returnValue = false;
+    }
+  }
 
   constructor(private currentRoute: ActivatedRoute, private userService: UserService) { }
 
