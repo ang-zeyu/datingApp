@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using datingAPI.Dtos;
 using datingAPI.Models;
 
 namespace datingAPI.Data
@@ -15,5 +16,7 @@ namespace datingAPI.Data
          Task<User> GetUser(string username);
 
          Task<IEnumerable<User>> GetUsers(); 
+
+         Task<bool> SaveUser(string username, UserForEditDto user);
     }
 }

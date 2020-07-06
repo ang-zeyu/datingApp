@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using AutoMapper;
 using datingAPI.Data;
 using datingAPI.Dtos;
 using datingAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace datingAPI.Controllers
 {
@@ -45,6 +47,22 @@ namespace datingAPI.Controllers
         {
             User user = await _userRepository.GetUser(username);
             return Ok(_mapper.Map<UserWithPhotosResponseDto>(user));
+        }
+
+        // PUT api/users/{username}
+        [HttpPut("{username}")]
+        public async Task<IActionResult> EditUser(string username, UserForEditDto user)
+        {
+            string currentUser = User.FindFirstValue(ClaimTypes.Name);
+            if (username != currentUser) {
+                return Unauthorized();
+            }
+
+            if (await _userRepository.SaveUser(username, user)) {
+                return NoContent();
+            } else {
+                throw new System.Exception($"Could not update user {username}!");
+            };
         }
     }
 }

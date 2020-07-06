@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AutoMapper;
+using datingAPI.Dtos;
 using datingAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,8 +10,11 @@ namespace datingAPI.Data
     public class UserRepository : IUserRepository
     {
         private readonly DataContext _context;
-        public UserRepository(DataContext context) {
+        private readonly IMapper _mapper;
+
+        public UserRepository(DataContext context, IMapper mapper) {
             this._context = context;
+            this._mapper = mapper;
         }
 
         public void Add(User user)
@@ -35,6 +40,19 @@ namespace datingAPI.Data
         public async Task<IEnumerable<User>> GetUsers()
         {
             return await _context.Users.Include(usr => usr.Photos).ToListAsync();
+        }
+
+        public async Task<bool> SaveUser(string username, UserForEditDto user)
+        {
+            User existingUser = await this.GetUser(username);
+            if (existingUser == null) {
+                return false;
+            }
+
+            _mapper.Map(user, existingUser);
+            int saved = await this.Save();
+
+            return saved > 0;
         }
     }
 }

@@ -22,6 +22,7 @@ namespace datingAPI.Dtos
                     opt => opt.MapFrom(src => GetAge(src.DateOfBirth)));
             
             CreateMap<Photo, PhotoResponseDto>();
+            CreateMap<UserForEditDto, User>();
         }
 
         private static int GetAge(DateTime dateTime)
