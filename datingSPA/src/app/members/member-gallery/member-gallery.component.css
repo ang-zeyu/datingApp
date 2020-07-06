@@ -1,0 +1,29 @@
+.img-fluid {
+  width: 100%;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 50%;
+  font-size: 2rem;
+  transition: color 0.5s;
+}
+
+.nav-button:hover {
+  color: white;
+}
+
+.nav-button:focus {
+  outline: none;
+}
+
+.nav-button-next {
+  right: 3rem;
+}
+
+.nav-button-prev {
+  left: 3rem;
+}

@@ -20,6 +20,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from '../environments/environment';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberPageComponent } from './members/member-page/member-page.component';
+import { MemberGalleryComponent } from './members/member-gallery/member-gallery.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MemberPageComponent } from './members/member-page/member-page.component
     FavouritesComponent,
     MemberCardComponent,
     MemberPageComponent,
+    MemberGalleryComponent,
   ],
   imports: [
     BrowserModule,

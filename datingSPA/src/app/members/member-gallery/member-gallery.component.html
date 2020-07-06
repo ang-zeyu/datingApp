@@ -1,0 +1,3 @@
+<img *ngIf="currentPhoto < photos.length" [src]="photos[currentPhoto].url" class="img-fluid" />
+<button (click)="switchToNextPhoto()" class="fa fa-arrow-circle-right nav-button nav-button-next"></button>
+<button (click)="switchToPrevPhoto()" class="fa fa-arrow-circle-left nav-button nav-button-prev"></button>

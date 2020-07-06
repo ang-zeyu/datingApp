@@ -38,7 +38,7 @@
         <li ngbNavItem>
           <a ngbNavLink>Photos <i class="fa fa-camera"></i></a>
           <ng-template ngbNavContent>
-            <p>3</p>
+            <app-member-gallery [photos]="user.photos"></app-member-gallery>
           </ng-template>
         </li>
         <li ngbNavItem>
