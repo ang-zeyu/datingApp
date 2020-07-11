@@ -37,6 +37,12 @@ namespace datingAPI.Data
             return await _context.Users.Include(usr => usr.Photos).FirstOrDefaultAsync(usr => usr.Username.ToLower() == username);
         }
 
+        public async Task<Photo> GetPhoto(int id)
+        {
+            Photo photo = await _context.Photos.FirstOrDefaultAsync(p => p.Id == id);
+            return photo;
+        }
+
         public async Task<IEnumerable<User>> GetUsers()
         {
             return await _context.Users.Include(usr => usr.Photos).ToListAsync();
