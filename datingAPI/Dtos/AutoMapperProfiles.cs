@@ -22,6 +22,9 @@ namespace datingAPI.Dtos
                     opt => opt.MapFrom(src => GetAge(src.DateOfBirth)));
             
             CreateMap<Photo, PhotoResponseDto>();
+            CreateMap<Photo, PhotoCloudinaryResponseDto>();
+            CreateMap<PhotoCreationDto, Photo>();
+
             CreateMap<UserForEditDto, User>();
         }
 
