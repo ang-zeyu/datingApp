@@ -47,6 +47,7 @@ namespace datingAPI
                         .AllowAnyMethod();
                 });
             });
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper(typeof(datingAPI.Controllers.UsersController).Assembly);
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
