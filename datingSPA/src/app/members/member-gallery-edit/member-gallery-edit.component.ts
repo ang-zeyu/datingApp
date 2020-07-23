@@ -1,7 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Photo } from '../../interfaces/photo';
 import { FileUploader } from 'ng2-file-upload';
-import { FileUploadService } from '../../services/file-upload/file-upload.service';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../services/auth/auth.service';
 
@@ -24,6 +23,10 @@ export class MemberGalleryEditComponent implements OnInit {
       authToken: authService.isLoggedIn() ? `Bearer ${localStorage.getItem('tok')}` : undefined,
     });
     this.uploader.onAfterAddingFile = file => file.withCredentials = false;
+    this.uploader.onSuccessItem = ((item, response) => {
+      const photo: Photo = JSON.parse(response);
+      this.photos.push(photo);
+    });
   }
 
   ngOnInit(): void {
