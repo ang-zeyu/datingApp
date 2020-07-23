@@ -22,6 +22,8 @@ import { MemberCardComponent } from './members/member-card/member-card.component
 import { MemberPageComponent } from './members/member-page/member-page.component';
 import { MemberGalleryComponent } from './members/member-gallery/member-gallery.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberGalleryEditComponent } from './members/member-gallery-edit/member-gallery-edit.component';
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -36,10 +38,12 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
     MemberPageComponent,
     MemberGalleryComponent,
     MemberEditComponent,
+    MemberGalleryEditComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FileUploadModule,
     FormsModule,
     NgbDropdownModule,
     NgbNavModule,
