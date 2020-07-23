@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using datingAPI.Dtos;
@@ -41,6 +42,11 @@ namespace datingAPI.Data
         {
             Photo photo = await _context.Photos.FirstOrDefaultAsync(p => p.Id == id);
             return photo;
+        }
+
+        public async Task<Photo> GetMainPhotoForUser(string username)
+        {
+            return (await _context.Users.Include(usr => usr.Photos).FirstOrDefaultAsync(u => u.Username == username)).Photos.FirstOrDefault(p => p.IsMain);
         }
 
         public async Task<IEnumerable<User>> GetUsers()

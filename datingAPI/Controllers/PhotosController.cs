@@ -102,5 +102,33 @@ namespace datingAPI.Controllers
 
             return CreatedAtRoute("GetPhoto", new { id = photo.Id, username = username }, _mapper.Map<PhotoCloudinaryResponseDto>(photo));
         }
+
+        [HttpPost("main/{id}")]
+        public async Task<IActionResult> SetMainPhotoForUser(string username, int id)
+        {
+            string currentUser = User.FindFirstValue(ClaimTypes.Name);
+            if (username != currentUser) {
+                return Unauthorized();
+            }
+
+            User user = await _userRepository.GetUser(username);
+
+            Photo photo = user.Photos.FirstOrDefault(photo => photo.Id == id);
+            if (photo == null) {
+                return BadRequest();
+            }
+
+            foreach (Photo p in user.Photos) {
+                p.IsMain = p.Id == id;
+            }
+            
+            int numChanges = await _userRepository.Save();
+            if (numChanges == 0)
+            {
+                throw new System.Exception("Could not change the main photo!");
+            }
+
+            return Ok();
+        }
     }
 }
