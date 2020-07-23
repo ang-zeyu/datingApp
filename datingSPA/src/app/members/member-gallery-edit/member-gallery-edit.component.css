@@ -35,3 +35,7 @@
   font-size: 3rem;
   color: rgba(245, 245, 245, 0.8);
 }
+
+table thead th {
+  border-bottom: 2px solid black;
+}

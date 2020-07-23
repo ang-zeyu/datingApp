@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Photo } from '../../interfaces/photo';
 import { FileUploader } from 'ng2-file-upload';
 import { FileUploadService } from '../../services/file-upload/file-upload.service';
@@ -11,6 +11,8 @@ import { FileUploadService } from '../../services/file-upload/file-upload.servic
 export class MemberGalleryEditComponent implements OnInit {
   @Input() photos: Photo[];
 
+  @ViewChild('dropZone') dropZone: ElementRef;
+
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
 
@@ -21,7 +23,11 @@ export class MemberGalleryEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  fileOverBase($event: any) {
-    
+  fileOverBase($event: any): void {
+    if ($event) {
+      this.dropZone.nativeElement.style = 'background-color: #f5a002; border: 1px solid white;';
+    } else {
+      this.dropZone.nativeElement.style = undefined;
+    }
   }
 }
