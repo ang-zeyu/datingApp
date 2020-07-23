@@ -11,8 +11,9 @@ export class FileUploadService {
 
   constructor(authService: AuthService) {
     this.uploader = new FileUploader({
-      url: environment.userApiBaseUrl,
+      url: environment.userApiBaseUrl + authService.username + '/photos',
       authToken: authService.isLoggedIn() ? `Bearer ${localStorage.getItem('tok')}` : undefined,
     });
+    this.uploader.onAfterAddingFile = file => file.withCredentials = false;
   }
 }
