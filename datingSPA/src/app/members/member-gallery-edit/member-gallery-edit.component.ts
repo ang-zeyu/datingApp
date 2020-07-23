@@ -1,8 +1,10 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Output, ViewChild, EventEmitter } from '@angular/core';
 import { Photo } from '../../interfaces/photo';
 import { FileUploader } from 'ng2-file-upload';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../services/auth/auth.service';
+import { UserService } from '../../services/user/user.service';
+import alertifyjs from 'alertifyjs';
 
 @Component({
   selector: 'app-member-gallery-edit',
@@ -12,12 +14,14 @@ import { AuthService } from '../../services/auth/auth.service';
 export class MemberGalleryEditComponent implements OnInit {
   @Input() photos: Photo[];
 
+  @Output() setMain = new EventEmitter<Photo>();
+
   @ViewChild('dropZone') dropZone: ElementRef;
 
   uploader: FileUploader;
   hasBaseDropZoneOver = false;
 
-  constructor(authService: AuthService) {
+  constructor(private authService: AuthService, private userService: UserService) {
     this.uploader = new FileUploader({
       url: environment.userApiBaseUrl + authService.username + '/photos',
       authToken: authService.isLoggedIn() ? `Bearer ${localStorage.getItem('tok')}` : undefined,
@@ -38,5 +42,16 @@ export class MemberGalleryEditComponent implements OnInit {
     } else {
       this.dropZone.nativeElement.style = undefined;
     }
+  }
+
+  setPhotoAsMain(photo: Photo): void {
+    this.userService.setUserMainPhoto(this.authService.username, photo.id).subscribe((response) => {
+      alertifyjs.success('Set new main photo!');
+      this.photos.find(p => p.isMain).isMain = false;
+      this.photos.find(p => p.id === photo.id).isMain = true;
+      this.setMain.emit(photo);
+    }, error => {
+      alertifyjs.error('Could not set main photo!');
+    });
   }
 }

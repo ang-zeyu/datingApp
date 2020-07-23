@@ -1,5 +1,6 @@
 .delete,
-.fa-star {
+.fa-star,
+.fa-home {
   position: absolute;
   bottom: 0.5em;
   margin: 0 0.2em;
@@ -17,9 +18,15 @@
 
 .fa-star {
   left: calc(0.5em + 15px);
+  cursor: pointer;
 }
 
-.delete:hover {
+.fa-home {
+  left: calc(0.5em + 15px);
+}
+
+.delete:hover,
+.fa-star:hover {
   transform: scale(1.2, 1.2);
 }
 

@@ -3,7 +3,8 @@
     <div *ngFor="let photo of photos" class="col-xs-2 col-md-4 my-2">
       <img [src]="photo.url" alt="gallery image" class="w-100" />
       <i class="fa fa-trash delete"></i>
-      <i *ngIf="photo.isMain" class="fa fa-star"></i>
+      <i *ngIf="photo.isMain" class="fa fa-home"></i>
+      <i *ngIf="!photo.isMain" class="fa fa-star" (click)="setPhotoAsMain(photo)"></i>
     </div>
   </div>
   <div class="mt-1">

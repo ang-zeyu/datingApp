@@ -23,4 +23,8 @@ export class UserService {
   saveUser(user: User): Observable<Object> {
     return this.http.put(`${environment.userApiBaseUrl}${user.username}`, user);
   }
+
+  setUserMainPhoto(username: string, id: number): Observable<object> {
+    return this.http.post(`${environment.userApiBaseUrl}${username}/photos/main/${id}`, {});
+  }
 }

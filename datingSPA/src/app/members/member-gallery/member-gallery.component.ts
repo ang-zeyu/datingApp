@@ -14,7 +14,6 @@ export class MemberGalleryComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.photos);
   }
 
   switchToNextPhoto(): void {

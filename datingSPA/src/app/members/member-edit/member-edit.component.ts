@@ -5,6 +5,7 @@ import { User } from '../../interfaces/user';
 import alertify from 'alertifyjs';
 import { UserService } from '../../services/user/user.service';
 import { NgForm } from '@angular/forms';
+import { Photo } from '../../interfaces/photo';
 
 @Component({
   selector: 'app-member-edit',
@@ -38,5 +39,9 @@ export class MemberEditComponent implements OnInit {
     }, err => {
       alertify.error(err);
     });
+  }
+
+  updateMainPhoto(photo: Photo): void {
+    this.user.photoUrl = photo.url;
   }
 }

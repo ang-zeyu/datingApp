@@ -46,7 +46,7 @@
         <li ngbNavItem>
           <a ngbNavLink>Photos <i class="fa fa-camera"></i></a>
           <ng-template ngbNavContent>
-            <app-member-gallery-edit [photos]="user.photos"></app-member-gallery-edit>
+            <app-member-gallery-edit [photos]="user.photos" (setMain)="updateMainPhoto($event)"></app-member-gallery-edit>
           </ng-template>
         </li>
       </ul>
