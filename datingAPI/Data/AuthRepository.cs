@@ -19,7 +19,7 @@ namespace datingAPI.Data
         public async Task<User> Login(string username, string password)
         {
             // retrieve user model
-            User user = await _context.Users.FirstOrDefaultAsync(user => user.Username == username);
+            User user = await _context.Users.Include(usr => usr.Photos).FirstOrDefaultAsync(user => user.Username == username);
 
              // check if user exists
             if (user == null)

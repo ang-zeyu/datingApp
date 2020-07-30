@@ -14,17 +14,28 @@ export class AuthService {
   private jwtHelperService: JwtHelperService = new JwtHelperService();
 
   public username = '';
+  public photoUrl = '';
 
   constructor(private httpClient: HttpClient) {
     if (this.isLoggedIn()) {
-      this.pushUsername();
+      this.pushStorageDetails();
+    } else {
+      this.popStorageDetails();
     }
   }
 
-  private pushUsername(): void {
+  private pushStorageDetails(): void {
     const token = localStorage.getItem('tok');
     const decodedToken = this.jwtHelperService.decodeToken(token);
     this.username = decodedToken.unique_name;
+    this.photoUrl = localStorage.getItem('photoUrl');
+  }
+
+  private popStorageDetails(): void {
+    localStorage.removeItem('tok');
+    localStorage.removeItem('photoUrl');
+    this.username = '';
+    this.photoUrl = '';
   }
 
   isLoggedIn(): boolean {
@@ -34,10 +45,9 @@ export class AuthService {
     }
 
     try {
-      const isTokenExpired = this.jwtHelperService.isTokenExpired(token);
-      return !isTokenExpired;
+      return !this.jwtHelperService.isTokenExpired(token);
     } catch {
-      localStorage.removeItem('tok');
+      this.popStorageDetails();
       return false;
     }
   }
@@ -47,14 +57,14 @@ export class AuthService {
       .pipe(map((res: any) => {
         if (res) {
           localStorage.setItem('tok', res.token);
-          this.pushUsername();
+          localStorage.setItem('photoUrl', res.user.photoUrl);
+          this.pushStorageDetails();
         }
       }));
   }
 
   logout(): void {
-    localStorage.removeItem('tok');
-    this.username = '';
+    this.popStorageDetails();
     alertifyjs.success('logged out!');
   }
 
