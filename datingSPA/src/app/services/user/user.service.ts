@@ -27,4 +27,8 @@ export class UserService {
   setUserMainPhoto(username: string, id: number): Observable<object> {
     return this.http.post(`${environment.userApiBaseUrl}${username}/photos/main/${id}`, {});
   }
+
+  deletePhoto(username: string, id: number): Observable<object> {
+    return this.http.delete(`${environment.userApiBaseUrl}${username}/photos/${id}`);
+  }
 }

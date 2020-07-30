@@ -52,4 +52,11 @@ export class MemberGalleryEditComponent implements OnInit {
       alertifyjs.error('Could not set main photo!');
     });
   }
+
+  deletePhoto(photo: Photo): void {
+    this.userService.deletePhoto(this.authService.username, photo.id).subscribe(response => {
+      alertifyjs.success('Deleted photo!');
+      this.photos.splice(this.photos.indexOf(photo), 1);
+    }, err => alertifyjs.error('Could not delete photo!'));
+  }
 }
