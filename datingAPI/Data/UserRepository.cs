@@ -49,6 +49,18 @@ namespace datingAPI.Data
             return (await _context.Users.Include(usr => usr.Photos).FirstOrDefaultAsync(u => u.Username == username)).Photos.FirstOrDefault(p => p.IsMain);
         }
 
+        public async Task<bool> DeletePhoto(int id)
+        {
+            Photo photo = await this.GetPhoto(id);
+            if (photo == null || photo.IsMain)
+            {
+                return false;
+            }
+
+            _context.Photos.Remove(photo);
+            return true;
+        }
+
         public async Task<IEnumerable<User>> GetUsers()
         {
             return await _context.Users.Include(usr => usr.Photos).ToListAsync();

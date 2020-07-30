@@ -19,6 +19,8 @@ namespace datingAPI.Data
 
          Task<Photo> GetMainPhotoForUser(string username);
 
+         Task<bool> DeletePhoto(int id);
+
          Task<IEnumerable<User>> GetUsers(); 
 
          Task<bool> SaveUser(string username, UserForEditDto user);

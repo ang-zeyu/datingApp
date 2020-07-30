@@ -103,6 +103,51 @@ namespace datingAPI.Controllers
             return CreatedAtRoute("GetPhoto", new { id = photo.Id, username = username }, _mapper.Map<PhotoCloudinaryResponseDto>(photo));
         }
 
+        [HttpDelete("{id}", Name = "DelPhoto")]
+        public async Task<IActionResult> DeletePhotoForUser(string username, int id)
+        {
+            string currentUser = User.FindFirstValue(ClaimTypes.Name);
+            if (username != currentUser) {
+                return Unauthorized();
+            }
+
+            User user = await _userRepository.GetUser(username);
+            if (!user.Photos.Any(p => p.Id == id))
+            {
+                return Unauthorized();
+            }
+
+            Photo photo = await _userRepository.GetPhoto(id);
+            if (photo == null)
+            {
+                return BadRequest("Photo does not exist!");
+            }
+            else if (photo.IsMain)
+            {
+                return BadRequest("Can't delete main photo!");
+            }
+
+            if (photo.PublicId != null)
+            {
+                DeletionParams delParams = new DeletionParams(photo.PublicId);
+                DeletionResult delResult = _cloudinary.Destroy(delParams);
+                if (delResult.Result != "ok")
+                {
+                    return BadRequest("Failed to delete photo"); 
+                }
+            }
+
+            await _userRepository.DeletePhoto(id);
+
+            int numChanges = await _userRepository.Save();
+            if (numChanges == 0)
+            {
+                throw new System.Exception("Could not delete your photo!");
+            }
+
+            return Ok();
+        }
+
         [HttpPost("main/{id}")]
         public async Task<IActionResult> SetMainPhotoForUser(string username, int id)
         {
