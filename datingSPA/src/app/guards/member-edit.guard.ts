@@ -12,7 +12,7 @@ export class MemberEditGuard implements CanDeactivate<MemberEditComponent> {
     currentRoute: ActivatedRouteSnapshot,
     currentState: RouterStateSnapshot,
     nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (component.aboutForm.dirty) {
+    if (component.aboutForm && component.aboutForm.dirty) {
       return confirm('You\'ve made some changes, are you sure you don\'t want to save them?');
     }
     return true;

@@ -21,7 +21,7 @@ export class MemberEditComponent implements OnInit {
 
   @HostListener('window:beforeunload', ['$event'])
   beforeUnload($event: any): void {
-    if (this.aboutForm.dirty) {
+    if (this.aboutForm && this.aboutForm.dirty) {
       $event.preventDefault();
       $event.returnValue = false;
     }
