@@ -14,8 +14,6 @@ import alertifyjs from 'alertifyjs';
 export class MemberGalleryEditComponent implements OnInit {
   @Input() photos: Photo[];
 
-  @Output() setMain = new EventEmitter<Photo>();
-
   @ViewChild('dropZone') dropZone: ElementRef;
 
   uploader: FileUploader;
@@ -49,7 +47,7 @@ export class MemberGalleryEditComponent implements OnInit {
       alertifyjs.success('Set new main photo!');
       this.photos.find(p => p.isMain).isMain = false;
       this.photos.find(p => p.id === photo.id).isMain = true;
-      this.setMain.emit(photo);
+      this.authService.changeMainPhoto(photo.url);
     }, error => {
       alertifyjs.error('Could not set main photo!');
     });

@@ -6,6 +6,7 @@ import alertify from 'alertifyjs';
 import { UserService } from '../../services/user/user.service';
 import { NgForm } from '@angular/forms';
 import { Photo } from '../../interfaces/photo';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-member-edit',
@@ -26,7 +27,7 @@ export class MemberEditComponent implements OnInit {
     }
   }
 
-  constructor(private currentRoute: ActivatedRoute, private userService: UserService) { }
+  constructor(private currentRoute: ActivatedRoute, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.currentRoute.data.subscribe(data => this.user = data.user);
@@ -39,9 +40,5 @@ export class MemberEditComponent implements OnInit {
     }, err => {
       alertify.error(err);
     });
-  }
-
-  updateMainPhoto(photo: Photo): void {
-    this.user.photoUrl = photo.url;
   }
 }

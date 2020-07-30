@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-4 col-12">
       <div class="card">
-        <img class="card-img-top" [src]="user.photoUrl" alt="Card image cap">
+        <img class="card-img-top" [src]="authService.photoUrl" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{ user.displayName }}</h5>
           <p class="card-text"><i class="fa fa-birthday-cake"></i>&nbsp;&nbsp;<strong>Age:</strong> {{ user.age }}</p>
@@ -46,7 +46,7 @@
         <li ngbNavItem>
           <a ngbNavLink>Photos <i class="fa fa-camera"></i></a>
           <ng-template ngbNavContent>
-            <app-member-gallery-edit [photos]="user.photos" (setMain)="updateMainPhoto($event)"></app-member-gallery-edit>
+            <app-member-gallery-edit [photos]="user.photos"></app-member-gallery-edit>
           </ng-template>
         </li>
       </ul>
