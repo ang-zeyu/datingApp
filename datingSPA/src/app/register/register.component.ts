@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { Router } from '@angular/router';
 
 import alertifyjs from 'alertifyjs';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -14,9 +15,15 @@ export class RegisterComponent implements OnInit {
   username: string;
   password: string;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  formGroup: FormGroup;
+
+  constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.formGroup = this.fb.group({
+      username: ['default username', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(8)]]
+    });
   }
 
   register(): void {
