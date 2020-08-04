@@ -1,5 +1,5 @@
 <div class="card" [routerLink]="['/members', user.username]">
-  <img class="card-img-top" [src]="user.photoUrl" alt="Card image cap">
+  <img *ngIf="user.photoUrl" class="card-img-top" [src]="user.photoUrl" alt="Card image cap">
   <div class="card-body">
     <p class="card-text font-weight-bolder display-name">
       {{ user.displayName }}
