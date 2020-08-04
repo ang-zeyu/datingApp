@@ -20,6 +20,37 @@
       <div *ngIf="formGroup.get('password').hasError('minlength') || formGroup.get('password').hasError('maxlength')" class="invalid-feedback text-center">Password should be between 4 - 8 characters!</div>
       <div *ngIf="formGroup.get('password').hasError('required')" class="invalid-feedback text-center">Password required!</div>
     </div>
+    <div class="form-group text-center mt-3">
+      <label class="control-label font-weight-bold" style="margin-right:10px">Gender:</label>
+      <label class="radio-inline">
+        <input class="mr-3" type="radio" value="male" formControlName="gender">Male
+      </label>
+      <label class="radio-inline ml-3">
+        <input class="mr-3" type="radio" value="female" formControlName="gender">Female
+      </label>
+    </div>
+    <div class="form-group">
+      <input [ngClass]="{'is-invalid': formGroup.get('displayName').errors && formGroup.get('displayName').touched}" class="form-control mx-auto form-item"
+             placeholder="Known as" formControlName="displayName">
+      <div class="invalid-feedback text-center" *ngIf="formGroup.get('displayName').touched && formGroup.get('displayName').hasError('required')">Display name is required</div>
+    </div>
+    <div class="form-group">
+      <input [ngClass]="{'is-invalid': formGroup.get('dateOfBirth').errors && formGroup.get('dateOfBirth').touched}" class="form-control mx-auto form-item"
+             placeholder="Date of Birth" formControlName="dateOfBirth" type="date" >
+      <div class="invalid-feedback text-center" *ngIf="formGroup.get('dateOfBirth').touched && formGroup.get('dateOfBirth').hasError('required')">Date of Birth is required</div>
+    </div>
+    <div class="form-group form-row w-50 mx-auto">
+      <div class="col-6">
+        <input [ngClass]="{'is-invalid': formGroup.get('city').errors && formGroup.get('city').touched}" class="form-control"
+               placeholder="City" formControlName="city">
+      </div>
+      <div class="col-6">
+        <input [ngClass]="{'is-invalid': formGroup.get('country').errors && formGroup.get('country').touched}" class="form-control"
+               placeholder="Country" formControlName="country">
+      </div>
+      <div class="col-12 text-center" style="color: #F57A00; font-size: 80%;"
+           *ngIf="formGroup.get('city').touched && formGroup.get('city').hasError('required') || formGroup.get('country').touched && formGroup.get('country').hasError('required')">City and Country are required!</div>
+    </div>
     <div class="form-row">
       <button class="d-block btn btn-success my-2 ml-auto" type="submit">Register</button>
       <button class="d-block btn btn-primary my-2 ml-1" type="button" (click)="switchToLogin()">Back to Login</button>
