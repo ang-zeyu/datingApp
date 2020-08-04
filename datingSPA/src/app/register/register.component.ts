@@ -27,6 +27,12 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
+    this.formGroup.markAllAsTouched();
+    if (this.formGroup.invalid) {
+      alertifyjs.error(`Your form is incomplete or has some invalid fields!`);
+      return;
+    }
+
     this.authService.register(this.username, this.password).subscribe((res) => {
       alertifyjs.success(`Registration success! Go ahead and login!`);
       this.switchToLogin();

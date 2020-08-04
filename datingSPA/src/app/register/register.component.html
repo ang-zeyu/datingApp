@@ -5,13 +5,20 @@
       <label for="username" class="form-label-text">Username</label>
     </div>
     <div class="form-row">
-      <input id="username" name="username" formControlName="username" class="form-control mx-auto form-item" type="text" placeholder="username" [(ngModel)]="username" />
+      <input [ngClass]="{ 'is-invalid': formGroup.get('username').errors && formGroup.get('username').touched }"
+             id="username" name="username" formControlName="username" class="form-control mx-auto form-item" type="text"
+             placeholder="username" [(ngModel)]="username" />
+      <div *ngIf="formGroup.get('username').hasError('required')" class="invalid-feedback text-center">Username required!</div>
     </div>
     <div class="form-row">
       <label for="password" class="form-label-text">Password</label>
     </div>
     <div class="form-row">
-      <input id="password" name="password" formControlName="password" class="form-control mx-auto form-item" type="password" placeholder="password" [(ngModel)]="password" />
+      <input [ngClass]="{ 'is-invalid': formGroup.get('password').errors && formGroup.get('password').touched }"
+             id="password" name="password" formControlName="password" class="form-control mx-auto form-item" type="password"
+             placeholder="password" [(ngModel)]="password" />
+      <div *ngIf="formGroup.get('password').hasError('minlength') || formGroup.get('password').hasError('maxlength')" class="invalid-feedback text-center">Password should be between 4 - 8 characters!</div>
+      <div *ngIf="formGroup.get('password').hasError('required')" class="invalid-feedback text-center">Password required!</div>
     </div>
     <div class="form-row">
       <button class="d-block btn btn-success my-2 ml-auto" type="submit">Register</button>
