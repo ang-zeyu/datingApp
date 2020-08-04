@@ -35,8 +35,14 @@
       <div class="invalid-feedback text-center" *ngIf="formGroup.get('displayName').touched && formGroup.get('displayName').hasError('required')">Display name is required</div>
     </div>
     <div class="form-group">
-      <input [ngClass]="{'is-invalid': formGroup.get('dateOfBirth').errors && formGroup.get('dateOfBirth').touched}" class="form-control mx-auto form-item"
-             placeholder="Date of Birth" formControlName="dateOfBirth" type="date" >
+      <input [ngClass]="{'is-invalid': formGroup.get('dateOfBirth').errors && formGroup.get('dateOfBirth').touched}"
+             class="form-control mx-auto form-item"
+             placeholder="Date of Birth"
+             formControlName="dateOfBirth"
+             type="date"
+             ngbDatepicker
+             #d="ngbDatepicker"
+             (click)="d.open()" [autoClose]="true">
       <div class="invalid-feedback text-center" *ngIf="formGroup.get('dateOfBirth').touched && formGroup.get('dateOfBirth').hasError('required')">Date of Birth is required</div>
     </div>
     <div class="form-group form-row w-50 mx-auto">

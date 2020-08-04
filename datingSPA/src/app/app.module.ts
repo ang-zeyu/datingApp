@@ -11,7 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorInterceptorProvider } from './interceptors/error.interceptor';
 
-import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { MembersComponent } from './members/member-list/members.component';
 import { MessagesComponent } from './messages/messages.component';
 import { FavouritesComponent } from './favourites/favourites.component';
@@ -48,6 +48,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     ReactiveFormsModule,
     NgbDropdownModule,
     NgbNavModule,
+    NgbDatepickerModule,
     RouterModule.forRoot(appRoutes),
     JwtModule.forRoot({
       config: {
