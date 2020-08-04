@@ -42,7 +42,7 @@ namespace datingAPI.Controllers
         }
 
         // GET api/users/{username}
-        [HttpGet("{username}")]
+        [HttpGet("{username}", Name="GetUser")]
         public async Task<IActionResult> GetUser(string username)
         {
             User user = await _userRepository.GetUser(username);

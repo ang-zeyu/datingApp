@@ -26,6 +26,7 @@ namespace datingAPI.Dtos
             CreateMap<PhotoCreationDto, Photo>();
 
             CreateMap<UserForEditDto, User>();
+            CreateMap<BasicUser, User>();
         }
 
         private static int GetAge(DateTime dateTime)

@@ -44,31 +44,6 @@ namespace datingAPI.Data
             return hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password)).SequenceEqual(passwordHash);
         }
 
-        public async Task<User> Register(string username, string password)
-        {
-            // check if user exists
-            if (await this.UserExists(username))
-            {
-                return null;
-            }
-
-            // validation
-
-            // create password hash, store to db
-            byte[] passwordHash, passwordSalt;
-            CreatePasswordHash(password, out passwordHash, out passwordSalt);
-
-            User userToStore = new User();
-            userToStore.Username = username;
-            userToStore.PasswordHash = passwordHash;
-            userToStore.PasswordSalt = passwordSalt;
-
-            await _context.Users.AddAsync(userToStore);
-            await _context.SaveChangesAsync();
-
-            return userToStore;
-        }
-
         public async Task<User> Register(User user, string password)
         {
             // check if user exists
