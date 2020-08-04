@@ -27,7 +27,7 @@ export class MemberEditComponent implements OnInit {
     }
   }
 
-  constructor(private currentRoute: ActivatedRoute, private userService: UserService, private authService: AuthService) { }
+  constructor(private currentRoute: ActivatedRoute, private userService: UserService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.currentRoute.data.subscribe(data => this.user = data.user);
