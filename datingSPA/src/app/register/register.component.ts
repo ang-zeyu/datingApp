@@ -12,9 +12,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class RegisterComponent implements OnInit {
 
-  username: string;
-  password: string;
-
   formGroup: FormGroup;
 
   constructor(private authService: AuthService, private router: Router, private fb: FormBuilder) { }
