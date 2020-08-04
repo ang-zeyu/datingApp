@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import alertifyjs from 'alertifyjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from '../../../environments/environment';
+import { User } from '../../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -68,8 +69,8 @@ export class AuthService {
     alertifyjs.success('logged out!');
   }
 
-  register(username: string, password: string): Observable<any> {
-    return this.httpClient.post(`${environment.authApiBaseUrl}register`, { username, password });
+  register(user: any): Observable<any> {
+    return this.httpClient.post(`${environment.authApiBaseUrl}register`, user);
   }
 
   changeMainPhoto(photoUrl: string): void {

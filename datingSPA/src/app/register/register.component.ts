@@ -35,7 +35,10 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    this.authService.register(this.username, this.password).subscribe((res) => {
+    const formValues = this.formGroup.value;
+    const ngbDateStruct = formValues.dateOfBirth;
+    formValues.dateOfBirth = new Date(ngbDateStruct.year, ngbDateStruct.month, ngbDateStruct.day);
+    this.authService.register(formValues).subscribe((res) => {
       alertifyjs.success(`Registration success! Go ahead and login!`);
       this.switchToLogin();
     }, (err) => {
