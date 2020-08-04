@@ -57,7 +57,7 @@ namespace DatingApp.API.Controllers
 
         // POST api/auth/login
         [HttpPost("login")]
-        public async Task<IActionResult> Login(BasicUser user)
+        public async Task<IActionResult> Login(UserForLogin user)
         {
             User retrievedUser = await _authRepository.Login(user.Username, user.Password);
             if (retrievedUser == null)
