@@ -28,6 +28,10 @@ export class MemberGalleryEditComponent implements OnInit {
     this.uploader.onSuccessItem = ((item, response) => {
       const photo: Photo = JSON.parse(response);
       this.photos.push(photo);
+      if (photo.isMain) {
+        this.photos.filter(p => p !== photo).forEach(p => p.isMain = false);
+        this.authService.changeMainPhoto(photo.url);
+      }
     });
   }
 
